@@ -5,6 +5,7 @@
   <title>Joel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <script src="js/main.js"></script>
   <style type="text/css">
     html,
     body {
@@ -20,33 +21,13 @@
       height: 300px;
     }
 
-    /* Your style here... */
+    
   </style>
 </head>
 
 <body>
   <div id="captcha-container">
-    <!-- Add your CAPTCHA here: -->
-    Hello world!
-
-    <!-- We've added a sample button. Feel free to remove it: -->
-    <button id="solve">
-      Solve!
-    </button>
+    
   </div>
-
-  <script type="text/javascript">
-    (function(window, document){
-      // This is how you tell the parent window that the CAPTCHA was successful.
-      function captchaSuccess() {
-        window.top.postMessage("success", '*');
-      }
-
-      // Your CAPTCHA code goes here, we've added a simple example below:
-      document.getElementById('solve')
-           .addEventListener('click', () => captchaSuccess());
-
-    })(window, document);
-  </script>
 </body>
 </html>
