@@ -78,6 +78,7 @@
                 FileName: "MrBean.jpg"
             },
         ],
+        ImageUsed: [],
         Init: function() {
             fn.Event.Reset();
         },
@@ -102,9 +103,14 @@
                 Random: function() {
                     var target = $("#div_images").empty();
                     var imageLength = fn.Beans.length;
-                    var randomIndex = fn.Data.GetRandomInt(0, imageLength - 1);
+                    var imageData = fn.Beans[fn.Data.GetRandomInt(0, imageLength - 1)];
 
-                    fn.Create.Image.Item(target, fn.Beans[randomIndex]);
+                    while (fn.ImageUsed.indexOf(imageData.FileName) != -1) {
+                        imageData = fn.Beans[fn.Data.GetRandomInt(0, imageLength - 1)];
+                    }
+
+                    fn.ImageUsed.push(imageData.FileName);
+                    fn.Create.Image.Item(target, imageData);
                 },
                 Item: function(target, data) {
                     var div = $("<div>").addClass("div_image_bean");
@@ -181,6 +187,8 @@
         },
         Event: {
             Reset: function(){
+                fn.ImageUsed = [];
+                
                 fn.Create.Lives.Init();
                 fn.Create.Goal.Init();
                 fn.Create.Image.Random();
